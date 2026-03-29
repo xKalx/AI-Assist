@@ -1,5 +1,9 @@
 [# AI-Assist]
 https://xkalx.github.io/AI-Assist/
+<body>
 <html>
-<a href=‪C:\Users\alfar\Downloads\Corpus.zip" download>Download Corpus</a>
+  <script>
+<button onclick="C:\Users\alfar\Downloads\Corpus.zip" download>Download Corpus</button>
+  </script>
 </html>
+</body>
