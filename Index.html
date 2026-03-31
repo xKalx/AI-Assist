@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agent Interface</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #eee;
+    text-align: center;
+    padding: 30px;
+  }
+
+  input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #222;
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .source {
+    font-size: 12px;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+
+<h1>AI Service Assistant</h1>
+
+<input type="text" id="query" placeholder="Ask something...">
+<button onclick="search()">Search</button>
+
+<div id="results"></div>
+
+<script>
+// === YOUR CORPUS ===
+const corpus = [
+  {
+    text: "The NJIT Makerspace provides students access to tools like 3D printers, laser cutters, and electronics labs.",
+    source: "Context Document"
+  },
+  {
+    text: "The goal of this service is to improve student innovation and hands-on learning opportunities.",
+    source: "Context Document"
+  },
+  {
+    text: "Users benefit by gaining technical skills, completing projects, and collaborating with others.",
+    source: "Purpose Document"
+  },
+  {
+    text: "The agent should respond sarcastically and always begin with 'that's easy.'",
+    source: "Purpose Document"
+  }
+];
+
+// === SEARCH FUNCTION ===
+function search() {
+  const query = document.getElementById("query").value.toLowerCase();
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  let matches = [];
+
+  corpus.forEach(doc => {
+    if (doc.text.toLowerCase().includes(query)) {
+      matches.push(doc);
+    }
+  });
+
+  if (matches.length === 0) {
+    resultsDiv.innerHTML = `
+      <div class="result">
+        <p><b>that's easy.</b> Oh wait… it’s not in the system. Try asking something actually covered by the documents.</p>
+      </div>
+    `;
+    return;
+  }
+
+  matches.forEach(doc => {
+    resultsDiv.innerHTML += `
+      <div class="result">
+        <p><b>that's easy.</b> ${doc.text}</p>
+        <div class="source">Source: ${doc.source}</div>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>
